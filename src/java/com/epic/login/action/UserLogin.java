@@ -4,7 +4,6 @@
  */
 package com.epic.login.action;
 
-import com.epic.init.Module;
 import com.epic.init.Status;
 import com.epic.util.LogFileCreator;
 import com.epic.login.bean.HomeValues;
@@ -14,9 +13,7 @@ import com.epic.login.bean.SessionUserBean;
 import com.epic.login.bean.TaskBean;
 import com.epic.login.bean.UserLoginBean;
 import com.epic.login.service.LoginService;
-import com.epic.db.DBProcesses;
 import com.epic.init.InitConfigValue;
-import com.epic.init.UserType;
 import com.epic.util.SessionVarlist;
 import com.epic.util.SystemMessage;
 import com.epic.util.Util;
@@ -55,16 +52,14 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
         try {
             if (service.getDbUserPassword(inputBean)) {
                 if (inputBean.getStatus() == Status.ACTIVE || inputBean.getStatus() == Status.PENDING) {
-
+                            System.out.println(">>"+Util.generateHash(inputBean.getPassword()));
                         if (Util.generateHash(inputBean.getPassword()).equals(inputBean.getDbPassword())) {
 
-                            if (service.checkHaveCustomers(inputBean.getCusId())) {
+                          
                                 sub.setUsername(inputBean.getUserName());
                                 sub.setUserProfileId(inputBean.getProfileId());
                                 sub.setLogFilePath(InitConfigValue.LOGPATH);
                                 sub.setName(inputBean.getName());
-                                sub.setUserType(inputBean.getUsertype());
-                                sub.setCusId(inputBean.getCusId());
                                 sub.setStatus(inputBean.getStatus());
 
                                 HttpSession sessionPrevious = ServletActionContext.getRequest().getSession(false);
@@ -85,8 +80,7 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
                                 userMap.put(sub.getUsername(), session.getId());
                                 sc.setAttribute(SessionVarlist.USERMAP, userMap);
 
-                                DBProcesses.insertHistoryRecord(sub.getUsername(), Module.LOGIN_MANAGEMENT, null, null, SystemMessage.LOGIN_MSG + " User:" + inputBean.getUserName(), request.getRemoteAddr());
-
+                                
                                 LogFileCreator.writeInfoToLog(SystemMessage.LOGIN_MSG + " User:" + inputBean.getUserName());
 
                                 profilePageidList = service.getUserprofilePageidList(inputBean.getProfileId());
@@ -104,10 +98,7 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
                                 }
                                 
                                 
-                            } else {
-                                addActionError("You haven't register as a customer");
-                                return "login";
-                            }
+                            
                         } else {
                             addActionError(SystemMessage.LOGIN_INVALID_PW); //merchant paeeword wrong
                             return "login";
@@ -168,7 +159,7 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
 
                 SessionUserBean su = (SessionUserBean) session.getAttribute("SessionObject");
                 if (su != null) {
-                    DBProcesses.insertHistoryRecord(su.getUsername(), Module.LOGIN_MANAGEMENT, null, null, SystemMessage.LOGOUT_MSG, request.getRemoteAddr());
+                    System.out.println(SystemMessage.LOGOUT_MSG);
                 } else {
                     addActionError("Session timeout.");
                 }

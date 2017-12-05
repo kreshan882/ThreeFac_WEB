@@ -13,9 +13,7 @@ public class SessionUserBean {
    
     private String username;
     private int UserProfileId;
-    private String userType;
     private String name;
-    private int cusId;
     private int adStatus;
     private int status;
     
@@ -43,21 +41,6 @@ public class SessionUserBean {
         return username;
     }
 
-    public int getCusId() {
-        return cusId;
-    }
-
-    public void setCusId(int cusId) {
-        this.cusId = cusId;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 
     public String getName() {
         return name;
@@ -98,6 +81,5 @@ public class SessionUserBean {
     public void setCurrentSessionId(String currentSessionId) {
         this.currentSessionId = currentSessionId;
     }
-
-    
+ 
 }

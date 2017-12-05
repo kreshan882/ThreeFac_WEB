@@ -13,7 +13,6 @@ import com.epic.cla.user.bean.UserManagementInputBean;
 import com.epic.cla.user.service.UserManagementService;
 import com.epic.util.AccessControlService;
 import com.epic.util.Common;
-import com.epic.db.DBProcesses;
 import com.epic.init.InitConfigValue;
 import com.epic.init.PageVarList;
 import com.epic.init.TaskVarList;
@@ -116,10 +115,6 @@ public class UserManagement extends ActionSupport implements ModelDriven<UserMan
                 if (service.updateData(inputBean)) {
 
                     addActionMessage(SystemMessage.USR_PROFILE_UPDATED);
-
-                    DBProcesses.insertHistoryRecord(getSub().getUsername(),
-                            Module.USER_MANAGEMENT, PageVarList.USER_MANAGEMENT, TaskVarList.UPDATE, SystemMessage.USR_PROFILE_UPDATED, getRequest().getRemoteAddr());
-
                     LogFileCreator.writeInfoToLog(SystemMessage.USR_PROFILE_UPDATED);
 
                 } else {
@@ -143,7 +138,6 @@ public class UserManagement extends ActionSupport implements ModelDriven<UserMan
                 return "delete";
             }
             if (service.deleteData(inputBean)) {
-                DBProcesses.insertHistoryRecord(getSub().getUsername(), Module.USER_MANAGEMENT, PageVarList.USER_MANAGEMENT, TaskVarList.DELETE, SystemMessage.USR_DELETED, getRequest().getRemoteAddr());
                 LogFileCreator.writeInfoToLog(SystemMessage.USR_DELETED);
                 inputBean.setMessage(SystemMessage.USR_DELETED);
                 inputBean.setSuccess(true);
@@ -167,7 +161,6 @@ public class UserManagement extends ActionSupport implements ModelDriven<UserMan
             if (doValidation(inputBean)) {
 
                 if (service.addData(inputBean)) {
-                    DBProcesses.insertHistoryRecord(getSub().getUsername(), Module.USER_MANAGEMENT, PageVarList.USER_MANAGEMENT, TaskVarList.ADD, SystemMessage.USR_ADD + " for " + inputBean.getUsername(), getRequest().getRemoteAddr());
                     addActionMessage(SystemMessage.USR_ADD);
                     LogFileCreator.writeInfoToLog(SystemMessage.USR_ADD);
 

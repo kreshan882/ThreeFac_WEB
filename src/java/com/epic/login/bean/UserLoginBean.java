@@ -18,8 +18,8 @@ public class UserLoginBean {
     private String userName;
     private String password;
     private String name;
-    private String usertype;
-    private int    cusId;
+//    private String usertype;
+//    private int    cusId;
     private int    profileId;
     private int    status;
     private String dbPassword;
@@ -42,13 +42,7 @@ public class UserLoginBean {
         this.message = message;
     }
 
-    public int getCusId() {
-        return cusId;
-    }
 
-    public void setCusId(int cusId) {
-        this.cusId = cusId;
-    }
 
     public String getName() {
         return name;
@@ -58,15 +52,7 @@ public class UserLoginBean {
         this.name = name;
     }
 
-    public String getUsertype() {
-        return usertype;
-    }
-
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
-
-    
+ 
     
     public String getUserName() {
         return userName;

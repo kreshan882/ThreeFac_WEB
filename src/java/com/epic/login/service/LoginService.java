@@ -33,7 +33,7 @@ public class LoginService {
             con = DBConnection.getConnection();
             //con.setAutoCommit(true);
 
-            String sql = "SELECT USERNAME,NAME,PROFILE_ID,STATUS,USER_TYPE,CUSTOMER_ID,PASSWORD FROM CLA_USER WHERE USERNAME=? ";
+            String sql = "SELECT USERNAME,NAME,PROFILE_ID,STATUS,PASSWORD FROM WEB_USER WHERE USERNAME=? ";
             perSt = con.prepareStatement(sql);
             perSt.setString(1, ulb.getUserName().toLowerCase());
             //perSt.setString(2, Util.generateHash(ulb.getPassword()));
@@ -43,8 +43,6 @@ public class LoginService {
                 ulb.setProfileId(res.getInt("PROFILE_ID"));
                 ulb.setStatus(res.getInt("STATUS"));
                 ulb.setName(res.getString("NAME"));
-                ulb.setUsertype(res.getString("USER_TYPE"));
-                ulb.setCusId(res.getInt("CUSTOMER_ID"));
                 ulb.setDbPassword(res.getString("PASSWORD"));
                 isUser = true;
             }
@@ -258,47 +256,47 @@ public class LoginService {
         return pageTaskMap;
     }
 
-    public boolean checkHaveCustomers(int cusId) throws Exception {
-        PreparedStatement prepSt = null;
-        ResultSet res = null;
-        Connection con = null;
-        String query = null;
-        boolean ok = false;
-
-        try {
-
-            con = DBConnection.getConnection();
-            //con.setAutoCommit(true);
-            query = "SELECT * FROM CLA_CUSTOMER Where CUSTOMER_ID=? AND STATUS=1";
-
-            prepSt = con.prepareStatement(query);
-            prepSt.setInt(1, cusId);
-            res = prepSt.executeQuery();
-            if (res.next()) {
-                ok = true;
-            }
-//            while (res.next()) {
-//                res.getString("BIN");
+//    public boolean checkHaveCustomers(int cusId) throws Exception {
+//        PreparedStatement prepSt = null;
+//        ResultSet res = null;
+//        Connection con = null;
+//        String query = null;
+//        boolean ok = false;
 //
+//        try {
+//
+//            con = DBConnection.getConnection();
+//            //con.setAutoCommit(true);
+//            query = "SELECT * FROM CLA_CUSTOMER Where CUSTOMER_ID=? AND STATUS=1";
+//
+//            prepSt = con.prepareStatement(query);
+//            prepSt.setInt(1, cusId);
+//            res = prepSt.executeQuery();
+//            if (res.next()) {
+//                ok = true;
 //            }
-
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            
-            if (res != null) {
-                res.close();
-            }
-            if (prepSt != null) {
-                prepSt.close();
-            }
-
-            if (con != null) {
-                con.close();
-            }
-        }
-        return ok;
-
-    }
+////            while (res.next()) {
+////                res.getString("BIN");
+////
+////            }
+//
+//        } catch (Exception e) {
+//            throw e;
+//        } finally {
+//            
+//            if (res != null) {
+//                res.close();
+//            }
+//            if (prepSt != null) {
+//                prepSt.close();
+//            }
+//
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//        return ok;
+//
+//    }
 
 }

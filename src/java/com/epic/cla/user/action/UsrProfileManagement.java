@@ -9,7 +9,6 @@ package com.epic.cla.user.action;
 import com.epic.cla.user.bean.UsrProfileBean;
 import com.epic.cla.user.bean.UsrProfileManagementInputBean;
 import com.epic.cla.user.service.UsrProfileManagementService;
-import com.epic.db.DBProcesses;
 import com.epic.init.Module;
 import com.epic.init.PageVarList;
 import com.epic.init.TaskVarList;
@@ -90,7 +89,6 @@ public class UsrProfileManagement extends ActionSupport implements ModelDriven<U
             if (doValidationAdd(inputBean)) {
                 
                 if (service.addData( inputBean)) {
-                    DBProcesses.insertHistoryRecord(getSub().getUsername(), Module.USER_MANAGEMENT,PageVarList.USER_PROFILE_MANAGEMENT, TaskVarList.ADD, SystemMessage.USRPROFILE_ADD + " for " + inputBean.getProfilename(),getRequest().getRemoteAddr());
                     addActionMessage(SystemMessage.USRPROFILE_ADD);
                     LogFileCreator.writeInfoToLog(SystemMessage.USRPROFILE_ADD);
                 } else {
@@ -128,7 +126,6 @@ public class UsrProfileManagement extends ActionSupport implements ModelDriven<U
                 }
                 if (service.updateData(inputBean)) { 
                     addActionMessage(SystemMessage.USR_PROFILE_UPDATED);             
-                    DBProcesses.insertHistoryRecord(getSub().getUsername(),Module.USER_MANAGEMENT, PageVarList.USER_PROFILE_MANAGEMENT, TaskVarList.UPDATE, SystemMessage.USR_PROFILE_UPDATED, getRequest().getRemoteAddr());
                     LogFileCreator.writeInfoToLog(SystemMessage.USR_PROFILE_UPDATED);
                 } else {
                     addActionError(SystemMessage.USR_PROFILE_UPDATED_ERROR);
@@ -149,7 +146,6 @@ public class UsrProfileManagement extends ActionSupport implements ModelDriven<U
                 return "delete";
             }
             if(service.deleteData( inputBean)){
-                 DBProcesses.insertHistoryRecord(getSub().getUsername(),  Module.USER_MANAGEMENT, PageVarList.USER_PROFILE_MANAGEMENT, TaskVarList.DELETE,SystemMessage.USRPROFILE_DELETED,getRequest().getRemoteAddr());
                  LogFileCreator.writeInfoToLog(SystemMessage.USRPROFILE_DELETED);
                  inputBean.setMessage(SystemMessage.USRPROFILE_DELETED);
                  inputBean.setSuccess(true);
@@ -203,7 +199,6 @@ public class UsrProfileManagement extends ActionSupport implements ModelDriven<U
                 if (service.updateTaskData(inputBean)) {
                     
                     addActionMessage(SystemMessage.USR_PROFILE_UPDATED);             
-                    DBProcesses.insertHistoryRecord(getSub().getUsername(),Module.USER_MANAGEMENT, PageVarList.USER_PROFILE_MANAGEMENT, TaskVarList.UPDATE, SystemMessage.USR_PROFILE_UPDATED, getRequest().getRemoteAddr());
                     LogFileCreator.writeInfoToLog(SystemMessage.USR_PROFILE_UPDATED);
 
                 } else {
