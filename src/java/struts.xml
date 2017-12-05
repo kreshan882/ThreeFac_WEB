@@ -1,0 +1,86 @@
+    <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+    <!--<constant name="struts.action.extension" value="blb" />-->
+    <!--<constant name="struts.devMode" value="true"/>-->
+    <package name="pglobal" namespace="/" extends="struts-default,json-default,jasperreports-default">
+        
+        <interceptors>
+            <interceptor name="EpicAccesControl" class="com.epic.interceptor.AccessControlInterceptor" />              
+            <interceptor-stack name="EpicStack">
+                <interceptor-ref name="EpicAccesControl"/> 
+                <interceptor-ref name="workflow"/>
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="basicStack"/>
+
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="EpicStack"/> 
+                   
+        <global-results>
+            <result name="noaccessPage" type="chain" >LogoutloginCall</result>
+            <!--<result name="loginpage">/login.jsp</result>-->
+            <!--<result name="acccontroler">/defaultaccesscontroler.jsp</result>-->
+            <result name="multiaccess">/pages/multiaccess.jsp</result>
+            <result name="pwchangedloginAgain">/pages/pwchangedloginAgain.jsp</result>
+            <result name="erropage"></result>
+        </global-results>  
+        
+    </package>
+
+    <package name="Epic_Login_DEFAULT" namespace="/" extends="struts-default">
+        <default-action-ref name="DefLogin"/>
+        <action name="DefLogin" class="com.epic.login.action.UserLogin" >
+            <result>/pages/login/Login.jsp</result>
+        </action>
+    </package>
+     
+     
+    <package name="Epic_login_manage" namespace="/" extends="pglobal">           
+        <action name="*loginCall" class="com.epic.login.action.UserLogin" method="{1}">
+            <result name="success">/pages/login/Home.jsp</result>
+            <result name="login">/pages/login/Login.jsp</result>           
+            <result name="changePassword">/pages/userManagement/changePasswordMerchand.jsp</result>           
+        </action>
+                
+        <action name="homeCall" class="com.epic.login.action.UserLogin" method="homeFunction">
+            <result name="success">/pages/login/Home.jsp</result>          
+        </action>
+    </package>
+        
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Start User Management ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->       
+    <package name="Epic_user_manage" namespace="/" extends="pglobal">
+                  
+        <action name="*usrMng"    class="com.epic.cla.user.action.UserManagement"   method="{1}"> 
+            <result name="success">/pages/userManagement/userManagement.jsp</result>        
+            <result name="update">/pages/msgFrag.jsp</result>
+            <result name="add">/pages/msgFrag.jsp</result>
+            <result name="list" type="json"></result>           
+            <result name="find" type="json"></result>              
+            <result name="delete"  type="json"  ></result>        
+        </action>
+        <action name="*usrprofileMng"    class="com.epic.cla.user.action.UsrProfileManagement"   method="{1}"> 
+            <result name="success">/pages/userManagement/userProfileManagement.jsp</result>        
+            <result name="update">/pages/msgFrag.jsp</result>
+            <result name="add">/pages/msgFrag.jsp</result>
+            <result name="list" type="json"></result>           
+            <result name="find" type="json"></result>              
+            <result name="delete"  type="json"  ></result>   
+            <result name="loaddata"  type="json"  ></result>      
+        </action> 
+    </package>   
+</struts>
+    
+    
+    
+    
+    
+    
+    
+    
