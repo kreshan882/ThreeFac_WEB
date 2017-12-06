@@ -155,12 +155,7 @@ public class Util {
         return basicStatus;
     }
 
-    public static Map<Integer, String> getAliveStatus() {
-        Map<Integer, String> basicStatus = new HashMap<Integer, String>();
-        basicStatus.put(Status.ENABLE, "ENABLE");
-        basicStatus.put(Status.DISABLE, "DISABLE");
-        return basicStatus;
-    }
+
 
     public static Map<String, String> getWebUserTypeList() {
         Map<String, String> basicStatus = new HashMap<String, String>();

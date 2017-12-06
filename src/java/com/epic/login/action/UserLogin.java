@@ -51,7 +51,7 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
 
         try {
             if (service.getDbUserPassword(inputBean)) {
-                if (inputBean.getStatus() == Status.ACTIVE || inputBean.getStatus() == Status.PENDING) {
+                if (inputBean.getStatus() == Status.ACTIVE || inputBean.getStatus() == Status.CHECK_THREEFAC) {
                             System.out.println(">>"+Util.generateHash(inputBean.getPassword()));
                         if (Util.generateHash(inputBean.getPassword()).equals(inputBean.getDbPassword())) {
 
@@ -91,7 +91,7 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
 
                                 Map<ModuleBean, List<PageBean>> modulePageList = service.getModulePageByUser(inputBean.getProfileId());
                                 session.setAttribute("modulePageList", modulePageList);
-                                if (inputBean.getStatus() == Status.PENDING) {
+                                if (inputBean.getStatus() == Status.CHECK_THREEFAC) {
                                     return "changePassword";
                                 }else if (inputBean.getStatus() == Status.ACTIVE) {
                                     return "success";

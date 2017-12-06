@@ -16,12 +16,20 @@ public class SessionUserBean {
     private String name;
     private int adStatus;
     private int status;
-    
+    private String userType;
     private String logFilePath;
     private String currentSessionId;
 
     public int getStatus() {
         return status;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public void setStatus(int status) {

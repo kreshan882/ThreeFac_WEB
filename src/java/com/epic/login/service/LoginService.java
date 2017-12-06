@@ -81,73 +81,94 @@ public class LoginService {
         ResultSet res = null;
         Connection con = null;
         Map<ModuleBean, List<PageBean>> modulePageList = null;
+        
+        modulePageList = new HashMap<ModuleBean, List<PageBean>>();
 
-        try {
-            con = DBConnection.getConnection();
-            //con.setAutoCommit(true);
-            perSt = con.prepareStatement("SELECT ISC.SECTION_ID,ISC.SECTION_NAME,ISC.SECTION_URL,ISP.MODULE_ID,ISP.DESCRIPTION,IP.PROFILE_ID "
-                    + " FROM CLA_MT_MODULES ISP,CLA_MT_SECTION ISC,CLA_USER_PROFILE_PRIVILAGE IP "
-                    + " WHERE ISP.MODULE_ID=IP.MODULE_ID AND ISC.SECTION_ID=IP.SECTION_ID AND IP.PROFILE_ID=? "
-                    + " GROUP BY ISC.SECTION_ID,ISC.SECTION_NAME,ISC.SECTION_URL,ISP.MODULE_ID,ISP.DESCRIPTION,IP.PROFILE_ID ORDER BY ISP.MODULE_ID,ISC.SECTION_ID ");
+        ModuleBean module = new ModuleBean();
+            module.setMODULE_ID("01");
+            module.setMODULE_NAME("User Management");
 
-            perSt.setInt(1, profileId);
-
-            res = perSt.executeQuery();
-            modulePageList = new HashMap<ModuleBean, List<PageBean>>();
-            String currentModule = "";
-            List<PageBean> pageList = null;
-            ModuleBean module = null;
-            while (res.next()) {
-                if (!res.getString("MODULE_ID").equals(currentModule)) {
-                    currentModule = res.getString("MODULE_ID");
-                    if (pageList != null && module != null) {
-                        modulePageList.put(module, pageList);
-                        pageList = null;
-                        module = null;
-                    }
-                    module = new ModuleBean();
-                    module.setMODULE_ID(res.getString("MODULE_ID"));
-                    module.setMODULE_NAME(res.getString("DESCRIPTION"));
-
-                    pageList = new ArrayList<PageBean>();
+                    List<PageBean> pageList= pageList = new ArrayList<PageBean>();
                     PageBean page = new PageBean();
-                    page.setPAGE_ID(res.getString("SECTION_ID"));
-                    page.setPAGE_NAME(res.getString("SECTION_NAME"));
-                    page.setPAGE_URL(res.getString("SECTION_URL"));
-
+                    page.setPAGE_ID("0101");
+                    page.setPAGE_NAME("User management");
+                    page.setPAGE_URL("usrMng");
                     pageList.add(page);
-
-                } else {
-
-                    PageBean page = new PageBean();
-                    page.setPAGE_ID(res.getString("SECTION_ID"));
-                    page.setPAGE_NAME(res.getString("SECTION_NAME"));
-                    page.setPAGE_URL(res.getString("SECTION_URL"));
-
-                    pageList.add(page);
-                }
-            }
-            if (pageList != null && module != null) {
-                modulePageList.put(module, pageList);
-                pageList = null;
-                module = null;
-            }
-
-        } catch (Exception ex) {
-//            con.rollback();
-            throw ex;
-        } finally {
-            if (res != null) {
-                res.close();
-            }
-            if (perSt != null) {
-                perSt.close();
-            }
-
-            if (con != null) {
-                con.close();
-            }
-        }
+                    
+                    PageBean page2 = new PageBean();
+                    page2.setPAGE_ID("0102");
+                    page2.setPAGE_NAME("User profilemanagement");
+                    page2.setPAGE_URL("usrprofileMng");
+                    pageList.add(page2);
+                    
+                    modulePageList.put(module, pageList);
+                    
+//        try {
+//            con = DBConnection.getConnection();
+//            //con.setAutoCommit(true);
+//            perSt = con.prepareStatement("SELECT ISC.SECTION_ID,ISC.SECTION_NAME,ISC.SECTION_URL,ISP.MODULE_ID,ISP.DESCRIPTION,IP.PROFILE_ID "
+//                    + " FROM MCS_MODULES ISP,MCS_SECTION ISC,MCS_USER_PROFILE_PRIVILAGE IP "
+//                    + " WHERE ISP.MODULE_ID=IP.MODULE_ID AND ISC.SECTION_ID=IP.SECTION_ID AND IP.PROFILE_ID=? "
+//                    + " GROUP BY ISC.SECTION_ID,ISC.SECTION_NAME,ISC.SECTION_URL,ISP.MODULE_ID,ISP.DESCRIPTION,IP.PROFILE_ID ORDER BY ISP.MODULE_ID,ISC.SECTION_ID ");
+//
+//            perSt.setInt(1, profileId);
+//
+//            res = perSt.executeQuery();
+//            modulePageList = new HashMap<ModuleBean, List<PageBean>>();
+//            String currentModule = "";
+//            List<PageBean> pageList = null;
+//            ModuleBean module = null;
+//            while (res.next()) {
+//                if (!res.getString("MODULE_ID").equals(currentModule)) {
+//                    currentModule = res.getString("MODULE_ID");
+//                    if (pageList != null && module != null) {
+//                        modulePageList.put(module, pageList);
+//                        pageList = null;
+//                        module = null;
+//                    }
+//                    module = new ModuleBean();
+//                    module.setMODULE_ID(res.getString("MODULE_ID"));
+//                    module.setMODULE_NAME(res.getString("DESCRIPTION"));
+//
+//                    pageList = new ArrayList<PageBean>();
+//                    PageBean page = new PageBean();
+//                    page.setPAGE_ID(res.getString("SECTION_ID"));
+//                    page.setPAGE_NAME(res.getString("SECTION_NAME"));
+//                    page.setPAGE_URL(res.getString("SECTION_URL"));
+//
+//                    pageList.add(page);
+//
+//                } else {
+//
+//                    PageBean page = new PageBean();
+//                    page.setPAGE_ID(res.getString("SECTION_ID"));
+//                    page.setPAGE_NAME(res.getString("SECTION_NAME"));
+//                    page.setPAGE_URL(res.getString("SECTION_URL"));
+//
+//                    pageList.add(page);
+//                }
+//            }
+//            if (pageList != null && module != null) {
+//                modulePageList.put(module, pageList);
+//                pageList = null;
+//                module = null;
+//            }
+//
+//        } catch (Exception ex) {
+////            con.rollback();
+//            throw ex;
+//        } finally {
+//            if (res != null) {
+//                res.close();
+//            }
+//            if (perSt != null) {
+//                perSt.close();
+//            }
+//
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
         return modulePageList;
 
     }
@@ -159,33 +180,35 @@ public class LoginService {
         ResultSet res = null;
         Connection con = null;
 
-        try {
-            con = DBConnection.getConnection();
-            //con.setAutoCommit(true);
-            String sql = "select SECTION_ID from CLA_USER_PROFILE_PRIVILAGE where PROFILE_ID=? GROUP BY SECTION_ID";
-            perSt = con.prepareStatement(sql);
-            perSt.setInt(1, dBuserProfile);
-            res = perSt.executeQuery();
-
-            while (res.next()) {
-                pageidlist.add(res.getString("SECTION_ID"));
-            }
-
-        } catch (Exception ex) {
-//            con.rollback();
-            throw ex;
-        } finally {
-             if (res != null) {
-                res.close();
-            }
-            if (perSt != null) {
-                perSt.close();
-            }
-
-            if (con != null) {
-                con.close();
-            }
-        }
+        pageidlist.add("0101");
+        pageidlist.add("0102");
+//        try {
+//            con = DBConnection.getConnection();
+//            //con.setAutoCommit(true);
+//            String sql = "select SECTION_ID from MCS_USER_PROFILE_PRIVILAGE where PROFILE_ID=? GROUP BY SECTION_ID";
+//            perSt = con.prepareStatement(sql);
+//            perSt.setInt(1, dBuserProfile);
+//            res = perSt.executeQuery();
+//
+//            while (res.next()) {
+//                pageidlist.add(res.getString("SECTION_ID"));
+//            }
+//
+//        } catch (Exception ex) {
+////            con.rollback();
+//            throw ex;
+//        } finally {
+//             if (res != null) {
+//                res.close();
+//            }
+//            if (perSt != null) {
+//                perSt.close();
+//            }
+//
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
         return pageidlist;
 
     }
@@ -196,107 +219,102 @@ public class LoginService {
         PreparedStatement perSt = null;
         ResultSet res = null;
         Connection con = null;
-
-        try {
-            con = DBConnection.getConnection();
-            //con.setAutoCommit(true);
-            String sql = "SELECT SECTION_ID,TASK_ID FROM CLA_USER_PROFILE_PRIVILAGE where PROFILE_ID=? ORDER BY SECTION_ID";
-            perSt = con.prepareStatement(sql);
-            perSt.setInt(1, profileID);
-            res = perSt.executeQuery();
-
-            String currentPage = "";
-            List<TaskBean> taskBeanList = new ArrayList<TaskBean>();
-            TaskBean taskBean;
-            while (res.next()) {
-
-                if (res.getString("SECTION_ID").equals(currentPage)) {
+        
+        List<TaskBean> taskBeanList = null;
+        TaskBean taskBean =null;
+        taskBeanList = new ArrayList<TaskBean>();
                     taskBean = new TaskBean();
-                    taskBean.setTASK_ID(res.getString("TASK_ID"));
-                    taskBean.setTASK_NAME(res.getString("TASK_ID"));
-                    taskBeanList.add(taskBean);
-                } else {
-
-                    if (currentPage != "") {
-                        pageTaskMap.put(currentPage, taskBeanList);
-                        taskBeanList = null;
-                        taskBeanList = new ArrayList<TaskBean>();
-                    }
-
-                    currentPage = res.getString("SECTION_ID");
+                    taskBean.setTASK_ID("01");
+                    taskBean.setTASK_NAME("01");
+        taskBeanList.add(taskBean);
+                    taskBean =null;
                     taskBean = new TaskBean();
-                    taskBean.setTASK_ID(res.getString("TASK_ID"));
-                    taskBean.setTASK_NAME(res.getString("TASK_ID"));
-                    taskBeanList.add(taskBean);
-                }
-
-            }
-
-            if (currentPage != "" && taskBeanList != null) {
-                pageTaskMap.put(currentPage, taskBeanList);
-                taskBeanList = null;
-                taskBeanList = new ArrayList<TaskBean>();
-                currentPage = "";
-            }
-        } catch (Exception ex) {
-//            con.rollback();
-            throw ex;
-        } finally {
-             if (res != null) {
-                res.close();
-            }
-            if (perSt != null) {
-                perSt.close();
-            }
-
-            if (con != null) {
-                con.close();
-            }
-        }
-        return pageTaskMap;
-    }
-
-//    public boolean checkHaveCustomers(int cusId) throws Exception {
-//        PreparedStatement prepSt = null;
-//        ResultSet res = null;
-//        Connection con = null;
-//        String query = null;
-//        boolean ok = false;
-//
+                    taskBean.setTASK_ID("02");
+                    taskBean.setTASK_NAME("02");
+        taskBeanList.add(taskBean);
+                    taskBean =null;
+                    taskBean = new TaskBean();
+                    taskBean.setTASK_ID("03");
+                    taskBean.setTASK_NAME("03");
+        taskBeanList.add(taskBean);
+                    taskBean =null;
+                    taskBean = new TaskBean();
+                    taskBean.setTASK_ID("04");
+                    taskBean.setTASK_NAME("04");
+        taskBeanList.add(taskBean);
+        
+        
+        pageTaskMap.put("0101", taskBeanList);
+        
+        
+        taskBeanList=null;
+        taskBeanList = new ArrayList<TaskBean>();
+                    taskBean =null;
+                    taskBean = new TaskBean();
+                    taskBean.setTASK_ID("01");
+                    taskBean.setTASK_NAME("01");
+        taskBeanList.add(taskBean);
+        
+        pageTaskMap.put("0102", taskBeanList);
 //        try {
-//
 //            con = DBConnection.getConnection();
 //            //con.setAutoCommit(true);
-//            query = "SELECT * FROM CLA_CUSTOMER Where CUSTOMER_ID=? AND STATUS=1";
+//            String sql = "SELECT SECTION_ID,TASK_ID FROM MCS_USER_PROFILE_PRIVILAGE where PROFILE_ID=? ORDER BY SECTION_ID";
+//            perSt = con.prepareStatement(sql);
+//            perSt.setInt(1, profileID);
+//            res = perSt.executeQuery();
 //
-//            prepSt = con.prepareStatement(query);
-//            prepSt.setInt(1, cusId);
-//            res = prepSt.executeQuery();
-//            if (res.next()) {
-//                ok = true;
+//            String currentPage = "";
+//            List<TaskBean> taskBeanList = new ArrayList<TaskBean>();
+//            TaskBean taskBean;
+//            while (res.next()) {
+//
+//                if (res.getString("SECTION_ID").equals(currentPage)) {
+//                    taskBean = new TaskBean();
+//                    taskBean.setTASK_ID(res.getString("TASK_ID"));
+//                    taskBean.setTASK_NAME(res.getString("TASK_ID"));
+//                    taskBeanList.add(taskBean);
+//                } else {
+//
+//                    if (currentPage != "") {
+//                        pageTaskMap.put(currentPage, taskBeanList);
+//                        taskBeanList = null;
+//                        taskBeanList = new ArrayList<TaskBean>();
+//                    }
+//
+//                    currentPage = res.getString("SECTION_ID");
+//                    taskBean = new TaskBean();
+//                    taskBean.setTASK_ID(res.getString("TASK_ID"));
+//                    taskBean.setTASK_NAME(res.getString("TASK_ID"));
+//                    taskBeanList.add(taskBean);
+//                }
+//
 //            }
-////            while (res.next()) {
-////                res.getString("BIN");
-////
-////            }
 //
-//        } catch (Exception e) {
-//            throw e;
+//            if (currentPage != "" && taskBeanList != null) {
+//                pageTaskMap.put(currentPage, taskBeanList);
+//                taskBeanList = null;
+//                taskBeanList = new ArrayList<TaskBean>();
+//                currentPage = "";
+//            }
+//        } catch (Exception ex) {
+////            con.rollback();
+//            throw ex;
 //        } finally {
-//            
-//            if (res != null) {
+//             if (res != null) {
 //                res.close();
 //            }
-//            if (prepSt != null) {
-//                prepSt.close();
+//            if (perSt != null) {
+//                perSt.close();
 //            }
 //
 //            if (con != null) {
 //                con.close();
 //            }
 //        }
-//        return ok;
-//
-//    }
+        return pageTaskMap;
+    }
+
+
 
 }

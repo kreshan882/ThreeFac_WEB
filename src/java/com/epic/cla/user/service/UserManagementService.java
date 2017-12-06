@@ -361,7 +361,7 @@ public class UserManagementService {
             preStat.setString(8, inputBean.getMobile());
             preStat.setString(9, inputBean.getNic());
             if (inputBean.getUsertype().equals(UserType.MERCHANT)){
-                preStat.setInt(10, Status.PENDING);
+                preStat.setInt(10, Status.CHECK_THREEFAC);
             }else{ //bank
                 preStat.setInt(10, Status.ACTIVE);
             }
