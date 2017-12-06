@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Login
-    Created on : 17/07/2014, 5:15:17 PM
-    Author     : kreshan
+    Document   : qrCodeRead
+    Created on : Dec 6, 2017, 1:48:32 PM
+    Author     : kreshan88
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <a href="Login.jsp"></a>
+
         <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/resources/css/font-awesome.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/ico" />
@@ -23,22 +23,10 @@
                 $('#password').val("");
                 $('.message').empty();
             }
-            function validatorCheck() {
-                var passSel=document.getElementById('passSel').checked;
-                var imeiSel=document.getElementById('imeiSel').checked;
-                
-               // alert(a+":"+b+":"+c);
-                if (passSel) {
-                    $('#passwordFM').show();
-                    $('#imeiFM').hide();
-                } else if(imeiSel){
-                    $('#passwordFM').hide();
-                    $('#imeiFM').show();
-                }
-            }
+          
         </script>
 
-        <title>Login Page</title>
+        <title>QR code read Page</title>
     </head>
     <body>
         <div class="login_body">
@@ -57,18 +45,10 @@
             <div class="content">
 
                 <div id="dialog">
-                        <table class="form_table">                  
-                            <tr>
-                                <td class="content_td formLable" colspan="2" align="center">Validate By</td> 
-                                <td class="content_td formLable" style="padding: 5px;">
-                                    <input type="radio"  checked="true" onclick="validatorCheck()" name="csr" id="passSel"/><span style="font-size: 12px;">password</span></td>
-                                <td class="content_td formLable" style="padding: 5px;">
-                                    <input type="radio" onclick="validatorCheck()" name="csr" id="imeiSel"/><span style="font-size: 12px;">Three factor</span></td>
-                            </tr>
-                        </table>
+                 
 
                     
-                    <s:form id="passwordFM" action="loginCheckloginCall" theme="simple" >
+                    <s:form id="qrcode" action="loginCheckloginCall" theme="simple" >
 
                         <table>
 
@@ -98,36 +78,7 @@
                         </div>
                     </s:form>
                     
-                                        
-                    <s:form id="imeiFM" action="loginCheckloginCall" theme="simple" cssStyle="display:none">
-
-                        <table>
-
-                            <tr>
-                                <td class="lable">Login ID</td>
-                                <td class="lable">:</td>
-                                <td colspan="2"><s:textfield name="userName" id="userName" cssClass="form-field"/></td>
-                            </tr>
-                            <tr>
-                                <td class="lable">Imei num</td>
-                                <td class="lable">:</td>
-                                <td colspan="2"><s:textfield name="imei" id="imei"  cssClass="form-field"/></td>
-                            </tr>
-                            <tr>  
-                                <td colspan="2"></td>
-                                <td align="right"><s:submit label="Login" cssClass="login_button" value="Login" /></td>
-                                <td align="right"><s:reset label="Reset" onclick="ResetForm()" cssClass="reset_button" value="Reset" /></td>
-                            </tr>
-
-
-                        </table>
-                        <div class="message">         
-                            <s:div id="divmsg">
-                                <i style="color: red">  <s:actionerror theme="jquery"/></i>
-                                <i style="color: green"> <s:actionmessage theme="jquery"/></i>
-                            </s:div>         
-                        </div>
-                    </s:form>
+                     
                 </div>
             </div>
             <!--end of login form-->

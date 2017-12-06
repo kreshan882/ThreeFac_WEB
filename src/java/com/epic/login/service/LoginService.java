@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class LoginService {
 
-    public boolean getDbUserPassword(UserLoginBean ulb) throws Exception {
+    public boolean getDbUserDetails(UserLoginBean ulb) throws Exception {
         PreparedStatement perSt = null;
         ResultSet res = null;
         Connection con = null;

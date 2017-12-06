@@ -50,64 +50,69 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
     public String loginCheck() {
 
         try {
-            if (service.getDbUserPassword(inputBean)) {
-                if (inputBean.getStatus() == Status.ACTIVE || inputBean.getStatus() == Status.CHECK_THREEFAC) {
-                            System.out.println(">>"+Util.generateHash(inputBean.getPassword()));
-                        if (Util.generateHash(inputBean.getPassword()).equals(inputBean.getDbPassword())) {
-
-                          
-                                sub.setUsername(inputBean.getUserName());
-                                sub.setUserProfileId(inputBean.getProfileId());
-                                sub.setLogFilePath(InitConfigValue.LOGPATH);
-                                sub.setName(inputBean.getName());
-                                sub.setStatus(inputBean.getStatus());
-
-                                HttpSession sessionPrevious = ServletActionContext.getRequest().getSession(false);
-                                if (sessionPrevious != null) {
-                                    sessionPrevious.invalidate();
-                                }
-
-                                HttpSession session = ServletActionContext.getRequest().getSession(true);
-                                sub.setCurrentSessionId(session.getId());
-                                session.setAttribute("SessionObject", sub);
-
-                                //set user and sessionid to hashmap              
-                                ServletContext sc = ServletActionContext.getServletContext();
-                                HashMap<String, String> userMap = (HashMap<String, String>) sc.getAttribute(SessionVarlist.USERMAP);
-                                if (userMap == null) {
-                                    userMap = new HashMap<String, String>();
-                                }
-                                userMap.put(sub.getUsername(), session.getId());
-                                sc.setAttribute(SessionVarlist.USERMAP, userMap);
-
-                                
-                                LogFileCreator.writeInfoToLog(SystemMessage.LOGIN_MSG + " User:" + inputBean.getUserName());
-
-                                profilePageidList = service.getUserprofilePageidList(inputBean.getProfileId());
-                                session.setAttribute("profilePageidList", profilePageidList);
-
-                                HashMap<String, List<TaskBean>> pageTaskList = service.getAllPageTask(inputBean.getProfileId());
-                                session.setAttribute("pageTaskList", pageTaskList);
-
-                                Map<ModuleBean, List<PageBean>> modulePageList = service.getModulePageByUser(inputBean.getProfileId());
-                                session.setAttribute("modulePageList", modulePageList);
-                                if (inputBean.getStatus() == Status.CHECK_THREEFAC) {
-                                    return "changePassword";
-                                }else if (inputBean.getStatus() == Status.ACTIVE) {
-                                    return "success";
-                                }
-                                
-                                
-                            
-                        } else {
-                            addActionError(SystemMessage.LOGIN_INVALID_PW); //merchant paeeword wrong
-                            return "login";
-                        }
-                     
-                } else {
-                    addActionError("User inactive");
-                    return "login";
-                }
+            if (service.getDbUserDetails(inputBean)) {
+//                if (inputBean.getStatus() == Status.ACTIVE) {
+//                        if (Util.generateHash(inputBean.getPassword()).equals(inputBean.getDbPassword())) {
+//
+//                          
+//                                sub.setUsername(inputBean.getUserName());
+//                                sub.setUserProfileId(inputBean.getProfileId());
+//                                sub.setLogFilePath(InitConfigValue.LOGPATH);
+//                                sub.setName(inputBean.getName());
+//                                sub.setStatus(inputBean.getStatus());
+//
+//                                HttpSession sessionPrevious = ServletActionContext.getRequest().getSession(false);
+//                                if (sessionPrevious != null) {
+//                                    sessionPrevious.invalidate();
+//                                }
+//
+//                                HttpSession session = ServletActionContext.getRequest().getSession(true);
+//                                sub.setCurrentSessionId(session.getId());
+//                                session.setAttribute("SessionObject", sub);
+//
+//                                //set user and sessionid to hashmap              
+//                                ServletContext sc = ServletActionContext.getServletContext();
+//                                HashMap<String, String> userMap = (HashMap<String, String>) sc.getAttribute(SessionVarlist.USERMAP);
+//                                if (userMap == null) {
+//                                    userMap = new HashMap<String, String>();
+//                                }
+//                                userMap.put(sub.getUsername(), session.getId());
+//                                sc.setAttribute(SessionVarlist.USERMAP, userMap);
+//
+//                                
+//                                LogFileCreator.writeInfoToLog(SystemMessage.LOGIN_MSG + " User:" + inputBean.getUserName());
+//
+//                                profilePageidList = service.getUserprofilePageidList(inputBean.getProfileId());
+//                                session.setAttribute("profilePageidList", profilePageidList);
+//
+//                                HashMap<String, List<TaskBean>> pageTaskList = service.getAllPageTask(inputBean.getProfileId());
+//                                session.setAttribute("pageTaskList", pageTaskList);
+//
+//                                Map<ModuleBean, List<PageBean>> modulePageList = service.getModulePageByUser(inputBean.getProfileId());
+//                                session.setAttribute("modulePageList", modulePageList);
+//                                if (inputBean.getStatus() == Status.CHECK_THREEFAC) {
+//                                    return "changePassword";
+//                                }else if (inputBean.getStatus() == Status.ACTIVE) {
+//                                    return "success";
+//                                }
+//                                
+//                                
+//                            
+//                        } else {
+//                            addActionError(SystemMessage.LOGIN_INVALID_PW); //merchant paeeword wrong
+//                            return "login";
+//                        }
+//                     
+//                } else if (inputBean.getStatus() == Status.CHECK_THREEFAC) {
+                    System.out.println("username:"+inputBean.getUserName());
+                    System.out.println("Imei:"+inputBean.getImei());
+                    
+                    return "qrcoderead";
+                    
+//                }else {
+//                    addActionError("User inactive");
+//                    return "login";
+//                }
 
             } else {
                 addActionError(SystemMessage.LOGIN_INVALID);//unvalid user only

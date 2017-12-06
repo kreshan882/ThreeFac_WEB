@@ -18,14 +18,23 @@ public class UserLoginBean {
     private String userName;
     private String password;
     private String name;
-//    private String usertype;
-//    private int    cusId;
     private int    profileId;
     private int    status;
     private String dbPassword;
+    private String imei;
     
     private String message;
 
+    public String getImei() {
+        return imei;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
+    
+    
     public String getMessage() {
         return message;
     }
