@@ -52,7 +52,6 @@ public class UserManagement extends ActionSupport implements ModelDriven<UserMan
     public UserManagementInputBean getModel() {
         try {
             service.getProfileList(inputBean);
-            inputBean.getUsertypeList().putAll(Util.getWebUserTypeList());
         } catch (Exception ex) {
             ex.printStackTrace();
             LogFileCreator.writeErrorToLog(ex);

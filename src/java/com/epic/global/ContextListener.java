@@ -25,15 +25,15 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            InitConfigValue.WS_URL = "http://127.0.0.1:8080/webservice";
-            InitConfigValue.LOGPATH = "/opt/mcs_indpro/logs/";
-
-            
-            if (System.getProperty("os.name").startsWith("Windows")) {
-                InitConfigValue.SCONFIGPATH = "C:\\mcs_indpro\\conf\\";
-            }else if (System.getProperty("os.name").startsWith("Linux")) {
-                InitConfigValue.SCONFIGPATH = "/opt/mcs_indpro/conf/";
-            }
+//            InitConfigValue.WS_URL = "http://127.0.0.1:8080/webservice";
+//            InitConfigValue.LOGPATH = "/opt/mcs_indpro/logs/";
+//            InitConfigValue.QR_IMG_PATH="";
+//            
+//            if (System.getProperty("os.name").startsWith("Windows")) {
+//                InitConfigValue.SCONFIGPATH = "C:\\mcs_indpro\\conf\\";
+//            }else if (System.getProperty("os.name").startsWith("Linux")) {
+//                InitConfigValue.SCONFIGPATH = "/opt/mcs_indpro/conf/";
+//            }
                 
 		
             InitConfigValueReader.readConfigValues();

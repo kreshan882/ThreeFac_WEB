@@ -5,7 +5,6 @@
 package com.epic.util;
 
 import com.epic.init.Status;
-import com.epic.init.UserType;
 import com.epic.login.bean.SessionUserBean;
 import java.math.BigInteger;
 import java.security.Key;
@@ -157,19 +156,6 @@ public class Util {
 
 
 
-    public static Map<String, String> getWebUserTypeList() {
-        Map<String, String> basicStatus = new HashMap<String, String>();
-        basicStatus.put(UserType.BANK, "Bank");
-        basicStatus.put(UserType.MERCHANT, "Merchant");
-        return basicStatus;
-    }
-
-    public static Map<String, String> getCustomerUserTypeList() {
-        Map<String, String> basicStatus = new HashMap<String, String>();
-        basicStatus.put(UserType.MERCHANT, "Merchant");
-        basicStatus.put(UserType.CUST, "Customer");
-        return basicStatus;
-    }
 
     public static Map<String, String> getValidateStatusList() {
         Map<String, String> basicStatus = new HashMap<String, String>();

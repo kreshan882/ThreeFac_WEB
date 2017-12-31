@@ -48,20 +48,26 @@
                  
 
                     
-                    <s:form id="qrcode" action="qrcodeCheckloginCall" theme="simple" >
+                    <s:form id="qrcode" action="goHomeByValQRloginCall" theme="simple" >
 
                         <table>
-
+                            <s:hidden name="userName" id="userName"  value="admin"/>
                             <tr>
-                                <td class="lable">Login ID</td>
+                                <td class="lable">User name</td>
                                 <td class="lable">:</td>
-                                <td colspan="2">${SessionObject.qrEncMsg}</td>
+                                <td colspan="2">${SessionObject.username}</td>
+                            </tr>
+                            <tr>
+                                <td class="lable">QR-code</td>
+                                <td class="lable">:</td>
+                                <td class="lable"><img src="${pageContext.request.contextPath}/resources/images/863163033112758.png"/></td>
                             </tr>
 
                             <tr>  
                                 <td colspan="2"></td>
                                 <td align="right"><s:submit label="Login" cssClass="login_button" value="Login" /></td>
                             </tr>
+
 
 
                         </table>

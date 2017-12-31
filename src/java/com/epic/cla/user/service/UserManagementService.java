@@ -11,7 +11,6 @@ import com.epic.init.Status;
 
 import com.epic.cla.user.bean.UserBean;
 import com.epic.cla.user.bean.UserManagementInputBean;
-import com.epic.init.UserType;
 import com.epic.util.Util;
 import java.sql.Connection;
 import java.sql.Date;
@@ -360,11 +359,7 @@ public class UserManagementService {
             preStat.setString(7, inputBean.getAddress());
             preStat.setString(8, inputBean.getMobile());
             preStat.setString(9, inputBean.getNic());
-            if (inputBean.getUsertype().equals(UserType.MERCHANT)){
-                preStat.setInt(10, Status.CHECK_THREEFAC);
-            }else{ //bank
-                preStat.setInt(10, Status.ACTIVE);
-            }
+
             
             preStat.setDate(11, (Date) Util.getLocalDate());
             preStat.setInt(12, -1);
