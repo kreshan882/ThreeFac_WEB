@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Epic CLA</title>
+        <title>Three Factor Authentication</title>
         <jsp:include page="../../Styles.jsp" />
 
 
@@ -36,7 +36,7 @@
                                
                                 <tr class="home_data">
                                     <td class="content_td homeLable" valign="top">Web Admin Panel Version</td>
-                                    <td class="content_td homeLable1">1.18</td>
+                                    <td class="content_td homeLable1">1.00</td>
                                 </tr>
 
 <!--                                <tr class="home_data">

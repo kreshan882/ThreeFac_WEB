@@ -3,7 +3,8 @@
     Created on : Dec 6, 2017, 1:48:32 PM
     Author     : kreshan88
 --%>
-
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="com.epic.login.bean.SessionUserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"  %>   
 <!DOCTYPE html>
@@ -19,9 +20,8 @@
 
         <script type="text/javascript">
             function ResetForm() {
-                $('#userName').val("");
-                $('#password').val("");
-                $('.message').empty();
+//                $('#userName').val("");
+//                $('.message').empty();
             }
           
         </script>
@@ -48,24 +48,19 @@
                  
 
                     
-                    <s:form id="qrcode" action="loginCheckloginCall" theme="simple" >
+                    <s:form id="qrcode" action="qrcodeCheckloginCall" theme="simple" >
 
                         <table>
 
                             <tr>
                                 <td class="lable">Login ID</td>
                                 <td class="lable">:</td>
-                                <td colspan="2"><s:textfield name="userName" id="userName" cssClass="form-field"/></td>
+                                <td colspan="2">${SessionObject.qrEncMsg}</td>
                             </tr>
-                            <tr>
-                                <td class="lable">Password</td>
-                                <td class="lable">:</td>
-                                <td colspan="2"><s:password name="password" id="password"  cssClass="form-field"/></td>
-                            </tr>
+
                             <tr>  
                                 <td colspan="2"></td>
                                 <td align="right"><s:submit label="Login" cssClass="login_button" value="Login" /></td>
-                                <td align="right"><s:reset label="Reset" onclick="ResetForm()" cssClass="reset_button" value="Reset" /></td>
                             </tr>
 
 

@@ -19,7 +19,18 @@ public class SessionUserBean {
     private String userType;
     private String logFilePath;
     private String currentSessionId;
+    
+    private String qrEncMsg;
 
+    public String getQrEncMsg() {
+        return qrEncMsg;
+    }
+
+    public void setQrEncMsg(String qrEncMsg) {
+        this.qrEncMsg = qrEncMsg;
+    }
+    
+    
     public int getStatus() {
         return status;
     }

@@ -4,13 +4,24 @@
  */
 package com.epic.util;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -18,40 +29,49 @@ import java.util.logging.Logger;
  */
 public class Test {
     
-    public static String formatToTwoDecimalPlaces(String in) {
-        DecimalFormat df = new DecimalFormat("#.00");
-        return df.format(Double.parseDouble(in));
-    }
 
-    public static void main(String[] arg) throws ParseException, Exception {
-        
-//        try {
-//            Util.userADValidation("lk03337", "qwe@123");
-//        } catch (Exception ex) {
-//           ex.printStackTrace();
-//        }
-        
-//       String test = "Please use Ord #: 4135131& Secret Code 3551(valid 12hrs) Amount Rs 300.0 on Sep 13, 2016 11:45:17 - Com Bank";
-       String test = "Please send Recipient +94767804455 Ord #:1015708(valid 12hrs) Amount Rs 100.0. Did not perform? Call +94112353353 Sep 13, 2016 11:10:00 - Com Bank";
-//       String test = "Received fund transfer from +94767804455 Secret Code: 1091(valid 12hrs) Sep 13, 2016 11:10:00 - Com Bank";
-//       String refNum = test.substring(test.indexOf(":")+1, test.indexOf("&")).trim();
-//       String accNum = test.substring(test.lastIndexOf("Code")+4, test.indexOf("(")).trim();
-//       String mackRef = ""; 
-//       String mackAcc = ""; 
-//       for(int i=0;i<refNum.length();i++){
-//           mackRef += "*";
-//       }
-//       for(int i=0;i<accNum.length();i++){
-//           mackAcc += "*";
-//       }
-//       
-//       test = test.replace(refNum, mackRef);
-//       test = test.replace(accNum, mackAcc);
-//        System.out.println("ref "+refNum);
-//        System.out.println("acc "+accNum);
-//        System.out.println(test);
-//       test= Util.maskSmsDescription(test);
-        System.out.println(formatToTwoDecimalPlaces("10011"));
-    }
+
+    public static void main(String[] args) {
+	try{	
+                String qrCodeText = "hello qr kreshan";
+		String filePath = "C:\\mcs_indpro\\conf\\JD.png";
+		int size = 125;
+		String fileType = "png";
+		File qrFile = new File(filePath);
+		createQRImage(qrFile, qrCodeText, size, fileType);
+		System.out.println("DONE");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+	}
+
+	private static void createQRImage(File qrFile, String qrCodeText, int size,String fileType) throws Exception {
+		// Create the ByteMatrix for the QR-Code that encodes the given String
+		Hashtable hintMap = new Hashtable();
+		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText,
+				BarcodeFormat.QR_CODE, size, size, hintMap);
+		// Make the BufferedImage that are to hold the QRCode
+		int matrixWidth = byteMatrix.getWidth();
+		BufferedImage image = new BufferedImage(matrixWidth, matrixWidth,
+				BufferedImage.TYPE_INT_RGB);
+		image.createGraphics();
+
+		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+		// Paint and save the image using the ByteMatrix
+		graphics.setColor(Color.BLACK);
+
+		for (int i = 0; i < matrixWidth; i++) {
+			for (int j = 0; j < matrixWidth; j++) {
+				if (byteMatrix.get(i, j)) {
+					graphics.fillRect(i, j, 1, 1);
+				}
+			}
+		}
+		ImageIO.write(image, fileType, qrFile);
+	}
 
 }
