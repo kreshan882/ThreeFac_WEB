@@ -20,13 +20,12 @@ public class UserManagementInputBean {
     private String repassword;
     private String userPro;
     private HashMap<String,String> userProList = new HashMap<String,String>();
-    private String usertype;
-    private HashMap<String,String> usertypeList = new HashMap<String,String>();
     private String email;
-    private String address;
+    private String imei;
     private String mobile;
-    private String nic;
-
+    
+    private String authType="";
+    private Map<String,String>  authTypeList=new HashMap<String, String>();
 
     
     //Delete Data
@@ -75,6 +74,32 @@ public class UserManagementInputBean {
     private String searchString;
     private String searchOper;
 
+    public String getImei() {
+        return imei;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
+    public String getAuthType() {
+        return authType;
+    }
+
+    public void setAuthType(String authType) {
+        this.authType = authType;
+    }
+
+    public Map<String, String> getAuthTypeList() {
+        return authTypeList;
+    }
+
+    public void setAuthTypeList(Map<String, String> authTypeList) {
+        this.authTypeList = authTypeList;
+    }
+
+    
+    
     public String getSearchname() {
         return searchname;
     }
@@ -142,30 +167,7 @@ public class UserManagementInputBean {
         this.name = name;
     }
 
-    public String getUsertype() {
-        return usertype;
-    }
-
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
-
-    public HashMap<String, String> getUsertypeList() {
-        return usertypeList;
-    }
-
-    public void setUsertypeList(HashMap<String, String> usertypeList) {
-        this.usertypeList = usertypeList;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
+   
     public String getMobile() {
         return mobile;
     }
@@ -174,15 +176,7 @@ public class UserManagementInputBean {
         this.mobile = mobile;
     }
 
-    public String getNic() {
-        return nic;
-    }
-
-    public void setNic(String nic) {
-        this.nic = nic;
-    }
-
-   
+  
     public boolean isVupdate() {
         return vupdate;
     }

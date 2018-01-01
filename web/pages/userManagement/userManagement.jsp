@@ -21,22 +21,16 @@
                 $('#username').val("");
                 $('#password').val("");
                 $('#repassword').val("");
-                $('#userPro').val("-1");
-                $('#usertype').val("-1");
                 $('#email').val("");
-                $('#address').val("");
+                $('#imei').val("");
                 $('#mobile').val("");
-                $('#nic').val("");
 
                 $('#upname').val("");
                 $('#upusername').val("");
-                $('#upuserPro').val("-1");
-                $('#upusertype').val("-1");
                 $('#upstatus').val("-1");
                 $('#upemail').val("");
-                $('#upaddress').val("");
+                $('#upimei').val("");
                 $('#upmobile').val("");
-                $('#upnic').val("");
 
                 jQuery("#gridtable").trigger("reloadGrid");
             }
@@ -124,7 +118,6 @@
                         
                         $('#upname').val(data.upname);
                         $('#upuserPro').val(data.upuserPro);
-                        $('#upusertype').val(data.upusertype);
                         $('#upstatus').val(data.upstatus);
                         $('#upemail').val(data.upemail);
                         $('#upaddress').val(data.upaddress);
@@ -186,6 +179,18 @@
 
             }
 
+            function loadAuthType(keyval){ 
+                if(keyval=='1'){
+                    $('#imei').hide();
+                    $('#password').show();
+                    $('#repassword').show();
+                }else{ //2
+                    $('#imei').show()
+                    $('#password').hide();
+                    $('#repassword').hide();
+                }
+                
+            }
         </script>
     </head>
 
@@ -246,32 +251,33 @@
                                     <td><s:textfield id="username" name="username" cssClass="textField" /></td>
                                 </tr>    
                                 <tr>
+                                    <td class="formLable">Email<span class="mandatory">*</span></td> <td >:</td>
+                                    <td><s:textfield id="email" name="email" cssClass="textField" /></td>
+                                    <td width="25px;"></td>
+                                    <td class="formLable">Mobile</td> <td >:</td>
+                                    <td><s:textfield id="mobile" name="mobile" cssClass="textField" placeholder="+94778906755" /></td>      
+                                </tr>
+                                
+                                <tr>
+                                    <td class="formLable">Authentication type<span class="mandatory">*</span></td>  <td >:</td>
+                                    <td><s:select  name="authType" headerKey="-1" 
+                                               headerValue="---Select---"  list="%{authTypeList}" listKey="key" listValue="value"
+                                               id="status" onchange="loadAuthType(this.value)" cssClass="dropdown" /></td>
+                                     <td width="25px;"></td>
+                                </tr>
+                                <tr>
                                     <td class="formLable">Password<span class="mandatory">*</span></td> <td >:</td>
                                     <td><s:password id="password" name="password" cssClass="textField" /></td>                                    
                                     <td width="25px;"></td>
                                     <td class="formLable">Re Password<span class="mandatory">*</span></td> <td>:</td>
                                     <td><s:password id="repassword" name="repassword" cssClass="textField" /></td>
                                 </tr>
+
+
                                 <tr>
-                                    <td class="formLable">User Profile<span class="mandatory">*</span></td> <td>:</td>
-                                    <td><s:select id="userPro" name="userPro" headerKey="-1"  headerValue="---Select---"  list="%{userProList}" cssClass="textField"/></td>
-                                    <td width="25px;"></td>
-                                    <td class="formLable">User Type<span class="mandatory">*</span></td> <td>:</td>
-                                    <td><s:select id="usertype" name="usertype" headerKey="-1"  headerValue="---Select---"  list="%{usertypeList}" cssClass="textField"/></td>
-                                </tr>
-                                <tr>
-                                    <td class="formLable">Email<span class="mandatory">*</span></td> <td >:</td>
-                                    <td><s:textfield id="email" name="email" cssClass="textField" /></td>
-                                    <td width="25px;"></td>
-                                    <td class="formLable">NIC/PP/BR<span class="mandatory">*</span></td>  <td >:</td>
-                                    <td><s:textfield id="nic" name="nic" cssClass="textField" /></td>
-                                </tr>
-                                <tr>
-                                    <td class="formLable">Mobile</td> <td >:</td>
-                                    <td><s:textfield id="mobile" name="mobile" cssClass="textField" placeholder="+94778906755" /></td>
-                                    <td width="25px;"></td>
-                                    <td class="formLable">Address</td>  <td >:</td>
-                                    <td><s:textfield id="address" name="address" cssClass="textField" /></td>
+                                    <td class="formLable">Imei<span class="mandatory">*</span></td>  <td >:</td>
+                                    <td><s:textfield id="imei" name="imei" cssClass="textField" /></td>
+                                     <td width="25px;"></td>
                                 </tr>
 
                                 <tr>
@@ -319,17 +325,7 @@
                                     <td class="formLable">Name<span class="mandatory">*</span></td> <td>:</td>
                                     <td ><s:textfield name="upname" id="upname" cssClass="textField" /></td>
                                 </tr>
-                                <tr>
-                                    <td class="formLable">User Profile<span class="mandatory">*</span></td> <td>:</td>
-                                    <td ><s:select  name="upuserPro" id="upuserPro" list="%{userProList}" 
-                                               listKey="key" listValue="value"    headerKey="-1"    headerValue="---Select---"     cssClass="dropdown" />
-                                    </td>
-                                    <td width="25px"></td>
-                                    <td class="formLable">User Type<span class="mandatory">*</span></td> <td>:</td>
-                                    <td ><s:select  name="upusertype" id="upusertype" list="%{usertypeList}" 
-                                               listKey="key" listValue="value"    headerKey="-1"    headerValue="---Select---"     cssClass="dropdown" />
-                                    </td>
-                                </tr>
+
                                 <tr>
                                     <td class="formLable">NIC/PP/BR<span class="mandatory">*</span></td> <td>:</td>
                                     <td ><s:textfield name="upnic" id="upnic" cssClass="textField"  />  </td>
@@ -414,20 +410,14 @@
                                 rowTotal="false"
                                 viewrecords="true"
                                 >
-                                <sjg:gridColumn name="profileId" index="PROFILE_ID" title="ProfileId"  frozen="true" hidden="true"/>
-                                <sjg:gridColumn name="usertypeId" index="USER_TYPE" title="userTypeId" frozen="true" hidden="true"/>
 
                                 <sjg:gridColumn name="name" index="NAME" title="Name" align="left" width="100" frozen="true" sortable="true"/>
                                 <sjg:gridColumn name="username" index="USERNAME" title="User Name" align="left" width="100" sortable="true"/>                    
-                                <sjg:gridColumn name="profilename" index="PROFILENAME" title="Profile Name" align="left" width="100" sortable="true"/>
-                                <sjg:gridColumn name="usertype" index="USERTYPENAME" title="User Type" align="left"  width="100"  sortable="true"/>
-                                <sjg:gridColumn name="email" index="EMAIL" title="Email" align="left"  width="100"  sortable="true"/>
-                                <sjg:gridColumn name="address" index="ADDRESS" title="Address" align="left"  width="100"  sortable="true"/>
+                                <sjg:gridColumn name="email" index="EMAIL" title="EMAIL" align="left"  width="100"  sortable="true"/>
                                 <sjg:gridColumn name="mobile" index="MOBILE" title="Mobile" align="left"  width="100"  sortable="true"/>
-                                <sjg:gridColumn name="nic" index="NIC" title="NIC" align="left"  width="100"  sortable="true"/>
+                                <sjg:gridColumn name="imei" index="IMEI" title="IMEI" align="left"  width="100"  sortable="true"/>
 
 
-                                <sjg:gridColumn name="regDate" index="CREATE_DATE" title="Reg Date" align="center"  width="100"  sortable="true"/>
                                 <sjg:gridColumn name="status" index="STATUS" title="Status" align="center" width="50" formatter="statusformatter" sortable="true"/>  
 
                                 <%--<sjg:gridColumn name="username" index="USERNAME" title="Reset Pw" align="center" width="7" align="center"  formatter="pdchangeformatter" sortable="false" hidden="#vresetpass"/>--%>

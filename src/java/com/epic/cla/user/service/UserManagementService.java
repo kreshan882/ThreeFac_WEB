@@ -32,7 +32,7 @@ public class UserManagementService {
 
             con = DBConnection.getConnection();
             //con.setAutoCommit(true);
-            String sqlCount = "select count(*) AS TOTAL FROM CLA_USER where USERNAME LIKE ?";
+            String sqlCount = "select count(*) AS TOTAL FROM web_user where USERNAME LIKE ?";
             prepSt = con.prepareStatement(sqlCount);
             prepSt.setString(1, "%" + bean.getSearchname() + "%");
             res = prepSt.executeQuery();
@@ -47,11 +47,7 @@ public class UserManagementService {
             }
 
 
-            getUsersListQuery = "SELECT up.DESCRIPTION AS PROFILENAME,ut.DESCRIPTION AS USERTYPENAME,u.NAME,u.USERNAME,U.PROFILE_ID,"
-                    + "u.EMAIL,u.ADDRESS,u.MOBILE,u.NIC,u.STATUS,"
-                    + "u.USER_TYPE,u.CREATE_DATE"
-                    + " FROM CLA_USER u,CLA_USER_PROFILE up,CLA_MT_USER_TYPE ut "
-                    + " where u.PROFILE_ID=up.PROFILE_ID AND u.USER_TYPE=ut.CODE AND UPPER(u.USERNAME) LIKE ? " + orderBy + " LIMIT " + from + "," + rows;
+            getUsersListQuery = "SELECT USERNAME,NAME,STATUS,IMEI,EMAIL,MOBILE FROM web_user where UPPER(USERNAME) LIKE ? " + orderBy + " LIMIT " + from + "," + rows;
 
             prepSt = con.prepareStatement(getUsersListQuery);
             prepSt.setString(1, "%" + bean.getSearchname().toUpperCase() + "%");
@@ -61,20 +57,12 @@ public class UserManagementService {
 
             while (res.next()) {
                 UserBean dataBean = new UserBean();
-                dataBean.setProfilename(res.getString("PROFILENAME"));
-                dataBean.setUsertype(res.getString("USERTYPENAME"));
-                dataBean.setName(res.getString("NAME"));
                 dataBean.setUsername(res.getString("USERNAME"));
-                dataBean.setProfileId(res.getString("PROFILE_ID"));
-
-                dataBean.setEmail(res.getString("EMAIL"));
-                dataBean.setAddress(res.getString("ADDRESS"));
-                dataBean.setMobile(res.getString("MOBILE"));
-                dataBean.setNic(res.getString("NIC"));
+                dataBean.setName(res.getString("NAME"));
                 dataBean.setStatus(res.getString("STATUS"));
-
-                dataBean.setUsertypeID(res.getString("USER_TYPE"));
-                dataBean.setRegDate(res.getString("CREATE_DATE"));
+                dataBean.setImei(res.getString("IMEI"));
+                dataBean.setEmail(res.getString("EMAIL"));
+                dataBean.setMobile(res.getString("MOBILE"));
 
                 dataBean.setFullCount(totalCount);
                 dataList.add(dataBean);
@@ -231,37 +219,37 @@ public class UserManagementService {
         return ok;
     }
 
-    public void getProfileList(UserManagementInputBean inputBean) throws Exception {
-        Connection connection = null;
-        PreparedStatement ps = null;
-        ResultSet result = null;
-
-        try {
-            connection = DBConnection.getConnection();
-            connection.setAutoCommit(true);
-            String sql = " SELECT PROFILE_ID,DESCRIPTION FROM CLA_USER_PROFILE where STATUS=?";
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, Status.ACTIVE);
-            result = ps.executeQuery();
-
-            while (result.next()) {
-                inputBean.getUserProList().put(result.getString("PROFILE_ID"), result.getString("DESCRIPTION"));
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            if (result != null) {
-                result.close();
-            }
-            if (ps != null) {
-                ps.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        }
-
-    }
+//    public void getProfileList(UserManagementInputBean inputBean) throws Exception {
+//        Connection connection = null;
+//        PreparedStatement ps = null;
+//        ResultSet result = null;
+//
+//        try {
+//            connection = DBConnection.getConnection();
+//            connection.setAutoCommit(true);
+//            String sql = " SELECT PROFILE_ID,DESCRIPTION FROM CLA_USER_PROFILE where STATUS=?";
+//            ps = connection.prepareStatement(sql);
+//            ps.setInt(1, Status.ACTIVE);
+//            result = ps.executeQuery();
+//
+//            while (result.next()) {
+//                inputBean.getUserProList().put(result.getString("PROFILE_ID"), result.getString("DESCRIPTION"));
+//            }
+//        } catch (Exception ex) {
+//            throw ex;
+//        } finally {
+//            if (result != null) {
+//                result.close();
+//            }
+//            if (ps != null) {
+//                ps.close();
+//            }
+//            if (connection != null) {
+//                connection.close();
+//            }
+//        }
+//
+//    }
 
     public boolean checkUserName(String username) throws Exception {
         Connection connection = null;
@@ -272,7 +260,7 @@ public class UserManagementService {
         try {
             connection = DBConnection.getConnection();
             connection.setAutoCommit(true);
-            String sql = "SELECT * FROM CLA_USER where USERNAME=?";
+            String sql = "SELECT * FROM web_user where USERNAME=?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             result = ps.executeQuery();
@@ -297,42 +285,42 @@ public class UserManagementService {
         return ok;
     }
 
-    public boolean checkUserNameUpdate(String earlierUserName, String username) throws Exception {
-        Connection connection = null;
-        PreparedStatement ps = null;
-        ResultSet result = null;
-        boolean ok = false;
-
-        try {
-            connection = DBConnection.getConnection();
-            connection.setAutoCommit(true);
-            String sql = "SELECT * FROM CLA_USER where USERNAME!=? and USERNAME=?";
-            ps = connection.prepareStatement(sql);
-            ps.setString(1, earlierUserName);
-            ps.setString(2, username);
-            result = ps.executeQuery();
-
-            if (result.next()) {
-                ok = true;
-            }
-
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            
-            if (result != null) {
-                result.close();
-            }
-            if (ps != null) {
-                ps.close();
-            }
-            
-            if (connection != null) {
-                connection.close();
-            }
-        }
-        return ok;
-    }
+//    public boolean checkUserNameUpdate(String earlierUserName, String username) throws Exception {
+//        Connection connection = null;
+//        PreparedStatement ps = null;
+//        ResultSet result = null;
+//        boolean ok = false;
+//
+//        try {
+//            connection = DBConnection.getConnection();
+//            connection.setAutoCommit(true);
+//            String sql = "SELECT * FROM CLA_USER where USERNAME!=? and USERNAME=?";
+//            ps = connection.prepareStatement(sql);
+//            ps.setString(1, earlierUserName);
+//            ps.setString(2, username);
+//            result = ps.executeQuery();
+//
+//            if (result.next()) {
+//                ok = true;
+//            }
+//
+//        } catch (Exception ex) {
+//            throw ex;
+//        } finally {
+//            
+//            if (result != null) {
+//                result.close();
+//            }
+//            if (ps != null) {
+//                ps.close();
+//            }
+//            
+//            if (connection != null) {
+//                connection.close();
+//            }
+//        }
+//        return ok;
+//    }
 
     public boolean addData(UserManagementInputBean inputBean) throws Exception {
         Connection con = null;
@@ -343,26 +331,21 @@ public class UserManagementService {
         try {
             con = DBConnection.getConnection();
             //con.setAutoCommit(true);
-            sql = "INSERT INTO CLA_USER(NAME, USERNAME,PASSWORD,PROFILE_ID,USER_TYPE,"
-                    + "EMAIL,ADDRESS,MOBILE,NIC,STATUS,CREATE_DATE,CUSTOMER_ID) "
-                    + " VALUES(?,?,?,?,?,  ?,?,?,?,?,?,?)";
+            sql = "INSERT INTO web_user(USERNAME,NAME,STATUS,PROFILE_ID,PASSWORD,"
+                    + "IMEI,EMAIL,MOBILE) "
+                    + " VALUES(?,?,?,?,?,  ?,?,?)";
 
             preStat = con.prepareStatement(sql);
 
-            preStat.setString(1, inputBean.getName());
-            preStat.setString(2, inputBean.getUsername().toLowerCase());
-            preStat.setString(3, Util.generateHash(inputBean.getPassword()));
-            preStat.setInt(4, Integer.parseInt(inputBean.getUserPro()));
-            preStat.setString(5, inputBean.getUsertype());
-
-            preStat.setString(6, inputBean.getEmail());
-            preStat.setString(7, inputBean.getAddress());
-            preStat.setString(8, inputBean.getMobile());
-            preStat.setString(9, inputBean.getNic());
-
+            preStat.setString(1, inputBean.getUsername().toLowerCase());
+            preStat.setString(2, inputBean.getName());
+            preStat.setString(3, "1");
+            preStat.setString(4, "1");
+            preStat.setString(5, Util.generateHash(inputBean.getPassword()));
             
-            preStat.setDate(11, (Date) Util.getLocalDate());
-            preStat.setInt(12, -1);
+            preStat.setString(6, inputBean.getImei());
+            preStat.setString(7, inputBean.getEmail());
+            preStat.setString(8, inputBean.getMobile());
 
             int n = preStat.executeUpdate();
             if (n >= 0) {
