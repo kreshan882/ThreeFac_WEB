@@ -6,7 +6,7 @@
 
 <div class="foot_note">
     <br>
-    © Epic Lanka Technologies (Pvt) Ltd Card Less ATM V1.20 [BN:23062017]
+    © Web Application V1.00 [BN:02012018]
 </div>
 
 
