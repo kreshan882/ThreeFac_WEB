@@ -23,7 +23,38 @@
 //                $('#userName').val("");
 //                $('.message').empty();
             }
-          
+        
+            function staCheck() {
+                
+                $('#divmsg').empty();
+                $.ajax({
+                    url: '${pageContext.request.contextPath}/statusCgecking',
+                    
+                    dataType: "json",
+                    type: "POST",
+                    success: function (data) {
+                        if (data.success) {
+                            alert("ddddd1")
+                            window.location = "${pageContext.request.contextPath}/goHomeByValQRloginCall";
+                        } else {
+                           alert("ddddd2")
+                        }
+
+                    },
+                    error: function (data) {
+                        window.location = "${pageContext.request.contextPath}/LogoutloginCall.blb?";
+                    }
+                });
+            }
+
+            function doSomething() { 
+                alert('start');
+                staCheck();
+            } 
+
+            $(document).ready(function () {
+                setInterval(doSomething, 2000);
+             });
         </script>
 
         <title>QR code read Page</title>
