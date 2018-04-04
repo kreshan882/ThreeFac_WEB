@@ -13,7 +13,6 @@ html,body {
     /*width: 530px;*/
     position: fixed;
     z-index: 1;
-    //background: #f2f0f9;
 
 }
 
@@ -24,7 +23,6 @@ html,body {
     width: 150px;
     left: 2px;
     display: inline-block;
-    //-webkit-transform: skew(-30deg);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -44,7 +42,6 @@ html,body {
     padding-top: 4px;
     width: 140px;
     left: 150px;
-    // -webkit-transform: skew(-30deg);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -62,7 +59,6 @@ html,body {
     padding-top: 4px; 
     width: 150px;
     left: 300px;
-    // -webkit-transform: skew(-30deg);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -80,7 +76,6 @@ html,body {
     padding-top: 4px; 
     width: 150px;
     left: 450px;
-    // -webkit-transform: skew(-30deg);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -107,7 +102,6 @@ a:hover, a:visited, a:link, a:active
     padding-top: 4px;    
     width: 150px;
     left: 600px;
-    // -webkit-transform: skew(-30deg);
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -134,7 +128,6 @@ a:hover, a:visited, a:link, a:active
     background-color: #c5c2c2;
 
     color: #636161;
-    //    background-color: #0099ff;
     -webkit-border-top-left-radius: 0px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 0px;
@@ -196,7 +189,6 @@ a:hover, a:visited, a:link, a:active
     font-style:normal;
     text-decoration:none;
     text-align:center;
-    //text-shadow:1px 1px 0px #ffffff;
 
      /*background-color: #aca5f2;*/ 
 }
@@ -212,7 +204,6 @@ background: #c5c2c2;
     border-top: 1px solid #bebcbc;
     border-left: 1px solid #bebcbc;
     border-right: 1px solid #bebcbc;
-    //border:1px solid #000;
     display:inline-block;
     color: #636161;
     font-family:Arial;
@@ -229,7 +220,6 @@ background: #c5c2c2;
     text-align:center;
     /*text-shadow:1px 1px 0px #58529f;*/
     z-index: 1;
-    //background-color: #000;
 
 
 }
@@ -251,7 +241,6 @@ background: #c5c2c2;
     position: fixed;
     top: 125px;
     right: 10px;
-    //   border: 1px solid #858282;
 
     left: 310px;
     bottom: 40px;

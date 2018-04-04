@@ -4,7 +4,6 @@ html,body {
     height:100%;
     font-family: arial;
     margin: 0 !important;
-    //background: #f2f0f9;
 }
 
 .contentcenter_sms_template {
@@ -324,7 +323,6 @@ html,body {
     position: fixed;
     top: 100px;
     right: 10px;
-    //   border: 1px solid #858282;
 
     left: 310px;
     bottom: 40px;
@@ -419,7 +417,6 @@ html,body {
     margin-right: 10px;
     background-color: #d9d9d9;
     color: #676666;
-    //    background-color: #0099ff;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -452,7 +449,6 @@ html,body {
     margin-right: 367px;
     background-color: #d9d9d9;
     color: #676666;
-    //    background-color: #0099ff;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -523,7 +519,6 @@ html,body {
 .viewuser_tbl {
     /*	background-image: url(../images/pattern.png);
             background-repeat: repeat;*/
-    //position: relative;
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -532,11 +527,7 @@ html,body {
     margin-right: auto;
     margin-bottom: auto;
     margin-left: auto;
-    //margin-top: 10px;
-    //bottom:10px;
-    //top: 30px;
     width: auto;
-    //position: absolute;
 
 }
 
@@ -604,7 +595,6 @@ html,body {
 /*list items*/
 #accordian li {
     list-style-type: none;
-    //    background: #004050;
 }
 .fa{
     color: #000;
@@ -849,9 +839,7 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
     font-size: 15px;
     width: 150px;
     height: 20px;
-    //height: 20px;
     text-align: right;
-    //vertical-align: middle;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -992,14 +980,10 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
     display:none;
     margin-top: -50px;
     margin-bottom: 10px;
-    //position:absolute;
-    //display: table;
-    //margin-left: -90px;
 }
 
 
 .form_hiddendiv_opt{
-    //display:none;
     margin-bottom: 20px;
     margin-top: -30px;
 }
@@ -1022,12 +1006,10 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 }
 
 .fileField{
-    //background-color: red;
     width:181px;
 }
 
 .legend{
-    //background-color: #2E2E2E;
     position:absolute;
     margin-top: -50px;
     margin-left: 20px; 
@@ -1037,7 +1019,6 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 
 #chartPie{
     width:270px;
-    //background-color: #000000;
     margin-left:  160px;
     margin-right:  50px;
 }
@@ -1046,21 +1027,15 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 .dashboardLable{
     font-family: arial;
     color: #494a48;
-    //text-shadow: 2px 2px 2px #516429;
     font-size: 18px;
     width: 150px;
-    //height: 20px;
     text-align: center;
-    //vertical-align: middle;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    // border-left: 2px solid #ded9f2;
-    // border-top: 2px solid #ded9f2;
-    //border-right: 2px solid #ded9f2;
     padding: 3px 1px 0px 1px;
     vertical-align: middle;
     background: #e3e0f0;
@@ -1069,7 +1044,6 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 .dashboardLable1{
     font-family: arial;
     color: #494a48;
-    //text-shadow: 2px 2px 2px #000000;;
     font-size: 18px;
     height: 80px;
     text-align: center;
@@ -1081,9 +1055,6 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    //border-left: 2px solid #ded9f2;
-    //border-bottom: 2px solid #ded9f2;
-    //border-right: 2px solid #ded9f2;
     background: #EAE8F2;
 }
 
@@ -1104,10 +1075,7 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 
 .home_data
 {
-    //display:inline-block;
     border:0;
-    //width:150px;
-    //height:170px;
     position: relative;
     -webkit-transition: all 150ms ease-in;
     -webkit-transform: scale(1); 
@@ -1135,10 +1103,7 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 
 .login_data
 {
-    //display:inline-block;
     border:0;
-    //width:150px;
-    //height:170px;
     position: relative;
     -webkit-transition: all 150ms ease-in;
     -webkit-transform: scale(1); 
@@ -1152,7 +1117,6 @@ table td:not(.homeLable):not(.homeLable1) ,table th{
 }
 .login_data:hover
 {
-    //-webkit-box-shadow: 2px 1px 2px 1px #000000;
     z-index: 2;
     -webkit-transition: all 150ms ease-in;
     -webkit-transform: scale(1.1);
