@@ -21,7 +21,12 @@ import com.epic.util.Util;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +34,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 
 /**
@@ -221,12 +227,18 @@ public static int k=0;
 
     }
 public String statusCgecking() {
-    System.out.println("sssssssss");
-    System.out.println("K:"+k);
+
+    System.out.println("statusCgecking-K:"+k);
     k++;
-    if(k==4){
+//    if(k==4){
+//        inputBean.setSuccess(true);
+//        k=0;
+//    }else{
+//        inputBean.setSuccess(false);
+//    }
+    String resp=UserLogin.sendAndRec("check status");
+    if("000".equals(resp)){
         inputBean.setSuccess(true);
-        k=0;
     }else{
         inputBean.setSuccess(false);
     }
@@ -286,6 +298,34 @@ public String statusCgecking() {
         }
 
         return LOGIN;
+    }
+    
+    
+     public static String sendAndRec(String req){
+        String res="000";
+        try{
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.put("enc_msg", req);
+            System.out.println("::"+req);
+            
+            URL url = new URL("http://127.0.0.1:8080/ThreeFac_SEC/api/"+"login_validate");//mobile_Reg, send_qr_detail, login_validate
+            URLConnection connection = url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "text/plain");
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(5000);
+            OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+            out.write(req);
+            out.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            res=in.readLine();
+            in.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+         System.out.println("responce:"+res);
+        return res;
     }
 
 }

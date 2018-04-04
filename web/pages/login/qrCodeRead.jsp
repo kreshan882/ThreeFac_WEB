@@ -34,10 +34,10 @@
                     type: "POST",
                     success: function (data) {
                         if (data.success) {
-                            alert("ddddd1")
+                           // alert("ddddd1")
                             window.location = "${pageContext.request.contextPath}/goHomeByValQRloginCall";
                         } else {
-                           alert("ddddd2")
+                           //alert("ddddd2")
                         }
 
                     },
