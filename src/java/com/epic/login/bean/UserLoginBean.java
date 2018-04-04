@@ -24,7 +24,17 @@ public class UserLoginBean {
     private String imei;
     
     private String message;
+    private boolean success;
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    
     public String getImei() {
         return imei;
     }

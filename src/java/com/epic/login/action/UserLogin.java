@@ -44,7 +44,8 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
 
     HttpServletRequest request = ServletActionContext.getRequest();
     List<String> profilePageidList = new ArrayList<String>();
-
+public static int k=0;
+    
     public String execute() {
         return SUCCESS;
     }
@@ -219,7 +220,19 @@ public class UserLogin extends ActionSupport implements Action, ModelDriven<User
         return "login";
 
     }
-
+public String statusCgecking() {
+    System.out.println("sssssssss");
+    System.out.println("K:"+k);
+    k++;
+    if(k==4){
+        inputBean.setSuccess(true);
+        k=0;
+    }else{
+        inputBean.setSuccess(false);
+    }
+    return "statusCgecking";
+    
+}
     public String homeFunction() throws Exception {
         return SUCCESS;
 

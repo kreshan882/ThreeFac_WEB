@@ -46,11 +46,16 @@
         <action name="*loginCall" class="com.epic.login.action.UserLogin" method="{1}">
             <result name="success">/pages/login/Home.jsp</result>
             <result name="login">/pages/login/Login.jsp</result>           
-            <result name="qrcoderead">/pages/login/qrCodeRead.jsp</result>           
+            <result name="qrcoderead">/pages/login/qrCodeRead.jsp</result>    
+            <result name="statusCgecking" type="json"></result>      
         </action>
                 
         <action name="homeCall" class="com.epic.login.action.UserLogin" method="homeFunction">
             <result name="success">/pages/login/Home.jsp</result>          
+        </action>
+        <action name="statusCgecking" class="com.epic.login.action.UserLogin" method="statusCgecking">
+            <result name="qrcoderead">/pages/login/qrCodeRead.jsp</result>  
+            <result name="statusCgecking" type="json"></result>      
         </action>
     </package>
         

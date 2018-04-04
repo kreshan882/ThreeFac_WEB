@@ -29,36 +29,42 @@ public class LoginService {
         ResultSet res = null;
         Connection con = null;
         boolean isUser = false;
-        try {
-            con = DBConnection.getConnection();
-            //con.setAutoCommit(true);
-
-            String sql = "SELECT USERNAME,NAME,PROFILE_ID,STATUS,PASSWORD FROM WEB_USER WHERE USERNAME=? ";
-            perSt = con.prepareStatement(sql);
-            perSt.setString(1, ulb.getUserName().toLowerCase());
-            //perSt.setString(2, Util.generateHash(ulb.getPassword()));
-            res = perSt.executeQuery();
-            if (res.next()) {
-                ulb.setUserName(res.getString("USERNAME"));
-                ulb.setProfileId(res.getInt("PROFILE_ID"));
-                ulb.setStatus(res.getInt("STATUS"));
-                ulb.setName(res.getString("NAME"));
-                ulb.setDbPassword(res.getString("PASSWORD"));
+//        try {
+//            con = DBConnection.getConnection();
+//            //con.setAutoCommit(true);
+//
+//            String sql = "SELECT USERNAME,NAME,PROFILE_ID,STATUS,PASSWORD FROM WEB_USER WHERE USERNAME=? ";
+//            perSt = con.prepareStatement(sql);
+//            perSt.setString(1, ulb.getUserName().toLowerCase());
+//            //perSt.setString(2, Util.generateHash(ulb.getPassword()));
+//            res = perSt.executeQuery();
+//            if (res.next()) {
+//                ulb.setUserName(res.getString("USERNAME"));
+//                ulb.setProfileId(res.getInt("PROFILE_ID"));
+//                ulb.setStatus(res.getInt("STATUS"));
+//                ulb.setName(res.getString("NAME"));
+//                ulb.setDbPassword(res.getString("PASSWORD"));
+//                isUser = true;
+//            }
+//        } catch (Exception ex) {
+//            throw ex;
+//        } finally {
+//            if (res != null) {
+//                res.close();
+//            }
+//            if (perSt != null) {
+//                perSt.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+                ulb.setUserName("admin");
+                ulb.setProfileId(1);
+                ulb.setStatus(1);
+                ulb.setName("Admin");
+                ulb.setDbPassword("password");
                 isUser = true;
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            if (res != null) {
-                res.close();
-            }
-            if (perSt != null) {
-                perSt.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
         return isUser;
 
     }
