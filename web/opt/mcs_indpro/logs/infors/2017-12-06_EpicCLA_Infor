@@ -1,0 +1,111 @@
+
+Wed Dec 06 06:58:49 IST 2017
+User login successful  User:admin
+
+Wed Dec 06 07:04:42 IST 2017
+User login successful  User:admin
+
+Wed Dec 06 07:18:59 IST 2017
+User login successful  User:admin
+
+Wed Dec 06 07:19:01 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:20 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:execute   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:21 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:50 IST 2017
+Class:com.epic.cla.user.action.UsrProfileManagement    Method:execute   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:51 IST 2017
+Class:com.epic.cla.user.action.UsrProfileManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:56 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:execute   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:19:57 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:20:36 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:20:39 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:21:04 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:execute   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:21:05 IST 2017
+Class:com.epic.cla.user.action.UserManagement    Method:List   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 07:51:06 IST 2017
+Class:com.epic.login.action.UserLogin    Method:Logout   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:03:13 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:03:24 IST 2017
+User login successful  User:admin
+
+Wed Dec 06 12:03:26 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:03:37 IST 2017
+Class:com.epic.login.action.UserLogin    Method:Logout   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:08:35 IST 2017
+User login successful  User:admin
+
+Wed Dec 06 12:08:35 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:08:45 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:20:56 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 12:26:35 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:00:03 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:05:39 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:06:55 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:06:57 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:06:58 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:58:17 IST 2017
+Class:com.epic.login.action.UserLogin    Method:Logout   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:58:36 IST 2017
+Class:com.epic.login.action.UserLogin    Method:Logout   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 13:59:52 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 14:21:05 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 14:29:42 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 15:35:17 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 15:38:47 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0
+
+Wed Dec 06 15:46:39 IST 2017
+Class:com.epic.login.action.UserLogin    Method:loginCheck   Msg:Database pool status : free connections : 1  Active connections : 0

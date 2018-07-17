@@ -1,0 +1,14 @@
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Database configuration passwprd:
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+DB_USERNAME=root
+DB_PASSWORD=password
+DB_DRIVER=com.mysql.jdbc.Driver
+DB_URL=jdbc:mysql://127.0.0.1:3306/mcs_indpro
+MIN_POOL=5
+MAX_POOL=20
+MAX_CON=100
+DB_CONNECTION_TIMEOUT=10000
+DB_CON_EXPIR_TIMEOUT=0
+
+
